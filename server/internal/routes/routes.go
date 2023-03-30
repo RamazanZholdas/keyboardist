@@ -28,6 +28,7 @@ func Setup(app *fiber.App) {
 	app.Get("/getCart", cart.GetAllFromUsersCart)
 	app.Post("/addToCart/:order", cart.InsertToCart)
 	app.Patch("/changeQuantity/:order", cart.ChangeQuantity)
+	app.Post("/payNow", cart.PayNow)
 
 	//news
 	app.Get("/getNews", news.GetAllNews)

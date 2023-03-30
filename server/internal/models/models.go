@@ -43,13 +43,12 @@ type ServiceMaster struct {
 }
 
 type PurchaseHistory struct {
-	ID           primitive.ObjectID `bson:"_id,omitempty" json:"id"`
-	UserID       primitive.ObjectID `bson:"user_id,omitempty" json:"user_id"`
-	KeyboardIDs  primitive.A        `bson:"keyboard_ids,omitempty" json:"keyboard_ids"`
-	Quantity     int32              `bson:"quantity,omitempty" json:"quantity"`
-	TotalPrice   float64            `bson:"total_price,omitempty" json:"total_price"`
-	PurchaseDate string             `bson:"purchase_date,omitempty" json:"purchase_date"`
-	PaymentType  string             `bson:"payment_type,omitempty" json:"payment_type"`
+	ID           primitive.ObjectID   `bson:"_id,omitempty" json:"id"`
+	UserID       primitive.ObjectID   `bson:"user_id,omitempty" json:"user_id"`
+	Products     []map[string]Product `bson:"keyboard_ids,omitempty" json:"keyboard_ids"`
+	TotalPrice   string               `bson:"total_price,omitempty" json:"total_price"`
+	PurchaseDate string               `bson:"purchase_date,omitempty" json:"purchase_date"`
+	PaymentType  string               `bson:"payment_type,omitempty" json:"payment_type"`
 }
 
 type Wiki struct {
