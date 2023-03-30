@@ -461,3 +461,62 @@ WARNING: 2023/03/29 21:04:26 logging.go:48: Collection users already exists
 WARNING: 2023/03/29 21:04:26 logging.go:48: Collection purchase_history already exists
 WARNING: 2023/03/29 21:04:26 logging.go:48: Collection service_masters already exists
 WARNING: 2023/03/29 21:04:26 logging.go:48: Collection news already exists
+
+New session started at: 2023-03-29T21:22:45+06:00
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection users already exists
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 21:22:45 logging.go:48: Collection news already exists
+
+New session started at: 2023-03-29T21:42:10+06:00
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection users already exists
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 21:42:10 logging.go:48: Collection news already exists
+
+New session started at: 2023-03-29T21:42:36+06:00
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection users already exists
+WARNING: 2023/03/29 21:42:36 logging.go:48: Collection news already exists
+
+New session started at: 2023-03-29T22:04:24+06:00
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection news already exists
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection users already exists
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 22:04:24 logging.go:48: Collection products already exists
+
+New session started at: 2023-03-29T22:12:51+06:00
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection users already exists
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 22:12:51 logging.go:48: Collection news already exists
+
+New session started at: 2023-03-29T22:19:35+06:00
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection news already exists
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 22:19:35 logging.go:48: Collection users already exists
+
+New session started at: 2023-03-29T22:54:41+06:00
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection products already exists
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection news already exists
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection wiki already exists
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection purchase_history already exists
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection service_masters already exists
+WARNING: 2023/03/29 22:54:41 logging.go:48: Collection users already exists
+
+New session started at: 2023-03-30T11:51:40+06:00
+WARNING: 2023/03/30 11:51:42 logging.go:48: Database does not exist, creating new database:  demo

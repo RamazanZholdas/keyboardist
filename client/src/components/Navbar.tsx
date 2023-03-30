@@ -22,21 +22,6 @@ function Navbar() {
   const user = 'max';
   const myRef = useRef<any>(null);
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/user', { withCredentials: true })
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-      });
-  }, []);
-
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (myRef.current && !myRef.current.contains(event.target)) {
@@ -115,7 +100,7 @@ function Navbar() {
             )}
 
             <div className="icons flex">
-              {data ? (
+              {user ? (
                 <button onClick={() => setDropdown(!dropdown)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +160,7 @@ function Navbar() {
                     stroke="currentColor"
                     className="w-8 h-8">
                     <text x="9" y="19" className="text-cyan-400 text-[10px] font-thin">
-                      {data}
+                      {user}
                     </text>
                     <path
                       strokeLinecap="round"

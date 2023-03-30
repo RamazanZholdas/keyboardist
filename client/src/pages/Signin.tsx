@@ -1,11 +1,12 @@
 import { Link, Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
-
+  const [error, setError] = useState('');
+  const [auth, setAuth] = useState(false);
   const submit = async (e: any) => {
     e.preventDefault();
 
@@ -20,9 +21,11 @@ const Signin = () => {
     });
 
     if (response.ok) {
+      setAuth(true);
       setRedirect(true);
     } else {
-      alert('Invalid credentials');
+      const errorBody = await response.json();
+      setError(errorBody.message);
     }
   };
 
@@ -65,11 +68,12 @@ const Signin = () => {
                   name="password"
                   id="password"
                   placeholder="••••••••"
-                  className="bg-gray-50 border sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-600 focus:border-cyan-600"
+                  className="border sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-600 focus:border-cyan-600"
                   required
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
+              {error && <p>{error}</p>}
               <div className="flex items-center justify-between">
                 <div className="flex items-start">
                   <div className="flex items-center h-5">
