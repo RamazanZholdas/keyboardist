@@ -73,7 +73,7 @@ func ChangeQuantity(c *fiber.Ctx) error {
 			if err != nil {
 				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Internal server error"})
 			}
-			newQuantity, err := strconv.Atoi(requestBody.Quantity)
+			newQuantity, err := strconv.Atoi(quantity)
 			if err != nil {
 				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Request body is invalid"})
 			}
