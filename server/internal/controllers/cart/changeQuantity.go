@@ -2,7 +2,6 @@ package cart
 
 import (
 	"encoding/json"
-	"fmt"
 	"strconv"
 
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/app"
@@ -15,6 +14,7 @@ import (
 func ChangeQuantity(c *fiber.Ctx) error {
 	var requestBody struct {
 		Quantity string `json:"quantity"`
+		OptionId string `json:"optionId"`
 	}
 
 	if err := json.Unmarshal(c.Body(), &requestBody); err != nil {
@@ -50,17 +50,23 @@ func ChangeQuantity(c *fiber.Ctx) error {
 	}
 
 	var productFromCart models.Product
+	var bufferIndex int
 	for index, item := range user.Cart {
 		productFromCart = item["product"]
 
 		if productFromCart.Order == int32(number) {
-			if productFromCart.Options[0]["inStock"] < requestBody.Quantity {
+			for optionIndex, option := range productFromCart.Options {
+				if option["optionId"] == requestBody.OptionId {
+					bufferIndex = optionIndex
+				}
+			}
+			if productFromCart.Options[bufferIndex]["inStock"] < requestBody.Quantity {
 				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 					"message": "The quantity must be less than or equal to the number of items in stock.",
 				})
 			}
 
-			oldQuantity, err := strconv.Atoi(productFromCart.Options[0]["quantity"])
+			oldQuantity, err := strconv.Atoi(productFromCart.Options[bufferIndex]["quantity"])
 			if err != nil {
 				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Internal server error"})
 			}
@@ -70,11 +76,9 @@ func ChangeQuantity(c *fiber.Ctx) error {
 			}
 
 			resultQuantity := oldQuantity + newQuantity
-			productFromCart.Options[0]["quantity"] = strconv.Itoa(resultQuantity)
+			productFromCart.Options[bufferIndex]["quantity"] = strconv.Itoa(resultQuantity)
 
 			user.Cart[index]["product"] = productFromCart
-
-			fmt.Println(productFromCart)
 
 			err = app.GetMongoInstance().UpdateOne("users", bson.M{"email": claims.Issuer}, bson.M{"$set": bson.M{"cart": user.Cart}})
 			if err != nil {

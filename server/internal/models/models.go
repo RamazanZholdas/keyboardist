@@ -28,6 +28,8 @@ type News struct {
 	Content string             `bson:"content,omitempty" json:"content"`
 	Images  primitive.A        `bson:"images,omitempty" json:"images"`
 	Heading string             `bson:"heading,omitempty" json:"heading"`
+	Author  string             `bson:"author,omitempty" json:"author"`
+	Date    string             `bson:"date,omitempty" json:"date"`
 }
 
 type ServiceMaster struct {

@@ -2,6 +2,7 @@ package news
 
 import (
 	"os"
+	"time"
 
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/app"
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/models"
@@ -26,6 +27,7 @@ func InsertNews(c *fiber.Ctx) error {
 	count++
 
 	news.Order = int32(count)
+	news.Date = string(time.Now().Format("02/01/2006"))
 
 	insertErr := app.GetMongoInstance().InsertOne(os.Getenv("COLLECTION_NEWS"), news)
 	if insertErr != nil {
