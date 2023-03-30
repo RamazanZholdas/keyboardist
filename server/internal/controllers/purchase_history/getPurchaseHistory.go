@@ -24,8 +24,8 @@ func GetPurchaseHistory(c *fiber.Ctx) error {
 
 	filter := bson.M{"user_id": user.ID}
 
-	var purchaseHistory models.PurchaseHistory
-	err = app.GetMongoInstance().FindOne("purchase_history", filter, &purchaseHistory)
+	var purchaseHistory []bson.M
+	err = app.GetMongoInstance().FindMany("purchase_history", filter, &purchaseHistory)
 	if err != nil {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Purchase history not found"})
 	}

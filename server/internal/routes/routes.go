@@ -5,6 +5,7 @@ import (
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/cart"
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/news"
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/product"
+	purchasehistory "github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/purchase_history"
 	servicemaster "github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/service_master"
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/controllers/wiki"
 	"github.com/gofiber/fiber/v2"
@@ -44,4 +45,7 @@ func Setup(app *fiber.App) {
 	app.Get("/getAllWikiPages", wiki.GetAllWikiPages)
 	app.Get("/getWikiPage/:order", wiki.GetWikiPage)
 	app.Post("/insertWikiPage", wiki.InsertWikiPage)
+
+	//purchase_history
+	app.Get("/getPurchaseHistory", purchasehistory.GetPurchaseHistory)
 }
