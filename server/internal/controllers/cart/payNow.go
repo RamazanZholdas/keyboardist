@@ -21,6 +21,8 @@ func PayNow(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Invalid request body"})
 	}
 
+	totalPrice := requestBody.TotalPrice
+
 	cookie := c.Cookies("jwt")
 
 	claims, err := jwt.ExtractTokenClaimsFromCookie(cookie)
@@ -37,7 +39,7 @@ func PayNow(c *fiber.Ctx) error {
 	purchaseHistory := models.PurchaseHistory{
 		UserID:       user.ID,
 		Products:     user.Cart,
-		TotalPrice:   requestBody.TotalPrice,
+		TotalPrice:   totalPrice,
 		PurchaseDate: time.Now().Format("2006-01-02 15:04:05"),
 		PaymentType:  "PayPal",
 	}

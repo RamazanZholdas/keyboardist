@@ -21,6 +21,9 @@ func ChangeQuantity(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Invalid request body"})
 	}
 
+	quantity := requestBody.Quantity
+	optionId := requestBody.OptionId
+
 	cookie := c.Cookies("jwt")
 
 	claims, err := jwt.ExtractTokenClaimsFromCookie(cookie)
@@ -56,11 +59,11 @@ func ChangeQuantity(c *fiber.Ctx) error {
 
 		if productFromCart.Order == int32(number) {
 			for optionIndex, option := range productFromCart.Options {
-				if option["optionId"] == requestBody.OptionId {
+				if option["optionId"] == optionId {
 					bufferIndex = optionIndex
 				}
 			}
-			if productFromCart.Options[bufferIndex]["inStock"] < requestBody.Quantity {
+			if productFromCart.Options[bufferIndex]["inStock"] < quantity {
 				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 					"message": "The quantity must be less than or equal to the number of items in stock.",
 				})
