@@ -27,21 +27,30 @@ type Product = {
 
 const ProductPageDynamic = () => {
   const { order } = useParams();
+  // @ts-ignore
   const { data: product, isLoading, error } = useItem({ order: order });
 
 
   const PutProduct = (activeItem: string) => {
-    toast.success("Added to cart!", {toastId: "success"});
     fetch(`http://localhost:8000/addToCart/${order}`, {
     method: 'POST',
     credentials: 'include',
     body: JSON.stringify({
       optionId: activeItem
     }),
-    })
+    }).then(response => {
+      if (response.status === 200) {
+        toast.success("Added to cart!", {toastId: "success"});
+      } else if (response.status === 400) {
+        toast.warn("No more in stock!", {toastId: "warn"});
+      } else if (response.status === 401) {
+        toast.error("Sign in, please!", {toastId: "error"});
+      }
+    });
   };
 
   const [activeItem, setActiveItem] = useState<string>("0");
+  // @ts-ignore
   return (
     <div className="w-full max-w-[1240px] mx-auto px-4 xl:px-0 py-4">
       <div className="text-white">

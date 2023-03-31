@@ -1,10 +1,14 @@
+import { Link } from "react-router-dom";
+
 const Wiki = () => {
   return (
     <div className="w-full max-w-[1240px] mx-auto px-4 xl:px-0 py-4 min-h-full">
       <h1 className="text-white font-extrabold text-3xl text-center p-4 mb-14">Wiki</h1>
 
+
       <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 grid-rows-4 justify-items-stretch gap-4 text-white text-2xl text-center h-full">
-        <div className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+
+        <Link to="/wiki/9" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
               <img
@@ -17,9 +21,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="box border-2 rounded-2xl row-span-1 md:row-span-2">
+        <Link to="/wiki/1" className="box border-2 rounded-2xl row-span-1 md:row-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80   transition-all duration-500 ease-in-out h-[560px]">
               <img
@@ -32,9 +36,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="box border-2 rounded-2xl row-span-1 md:row-span-2">
+        <Link to="/wiki/2" className="box border-2 rounded-2xl row-span-1 md:row-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80   transition-all duration-500 ease-in-out h-[560px]">
               <img
@@ -47,8 +51,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+        </Link>
+
+        <Link to="/wiki/3" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
               <img
@@ -61,9 +66,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="box border-2 rounded-2xl row-span-1 md:row-span-2">
+        <Link to="/wiki/3" className="box border-2 rounded-2xl row-span-1 md:row-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80   transition-all duration-500 ease-in-out h-[560px]">
               <img
@@ -76,9 +81,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
 
-        <div className="box border-2 rounded-2xl row-span-1 md:row-span-2">
+        <Link to="/wiki/4" className="box border-2 rounded-2xl row-span-1 md:row-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80   transition-all duration-500 ease-in-out h-[560px]">
               <img
@@ -91,8 +96,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+        </Link>
+
+        <Link to="/wiki/5" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
               <img
@@ -105,8 +111,9 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
-        <div className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+        </Link>
+
+        <Link to="/wiki/6" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
           <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
             <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
               <img
@@ -119,7 +126,37 @@ const Wiki = () => {
               </p>
             </div>
           </div>
-        </div>
+        </Link>
+
+        <Link to="/wiki/8" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+          <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
+            <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
+              <img
+                  src="https://i.imgur.com/iyIgjsn.png"
+                  alt=""
+                  className="h-full object-cover w-full rounded-2xl"
+              />
+              <p className="absolute left-0 bottom-0 rounded-bl-2xl text-2xl font-bold bg-gray-600/50 shadow-2xl p-4">
+                What is firmware?
+              </p>
+            </div>
+          </div>
+        </Link>
+
+        <Link to="/wiki/7" className="box border-2 rounded-2xl col-span-1 md:col-span-2">
+          <div className="cursor-pointer rounded-2xl flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
+            <div className="content-card w-full relative hover:opacity-80 transition-all duration-500 ease-in-out h-[270px]">
+              <img
+                  src="https://keebnews.com/wp-content/uploads/2021/11/ansi-vs-iso.png"
+                  alt=""
+                  className="h-full object-cover w-full rounded-2xl"
+              />
+              <p className="absolute left-0 bottom-0 rounded-bl-2xl text-2xl font-bold bg-gray-600/50 shadow-2xl p-4">
+                What are ANSI and ISO?
+              </p>
+            </div>
+          </div>
+        </Link>
       </div>
 
       {/*<h1 className="text-white font-bold text-3xl mb-4" id={'what-is'}>*/}

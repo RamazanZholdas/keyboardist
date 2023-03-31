@@ -83,3 +83,61 @@ func createLogFile(filePath string) (*os.File, error) {
 
 	return file, nil
 }
+
+/*
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"io"
+	"log"
+	"net/http"
+	"os"
+	"time"
+)
+
+type Log struct {
+	Level   string    `json:"level"`
+	Message string    `json:"message"`
+	Time    time.Time `json:"time"`
+}
+
+func Log(level string, v ...interface{}) {
+	message := ""
+	for _, val := range v {
+		message += val.(string)
+	}
+	log.Println(level, message)
+
+	go func() {
+		logData := Log{
+			Level:   level,
+			Message: message,
+			Time:    time.Now(),
+		}
+		logBytes, _ := json.Marshal(logData)
+		body := bytes.NewBuffer(logBytes)
+
+		req, err := http.NewRequest("POST", "http://localhost:8080/log/"+level, body)
+		if err != nil {
+			log.Println("Error creating request:", err)
+			return
+		}
+
+		req.Header.Set("Authorization", os.Getenv("AUTH_TOKEN"))
+		req.Header.Set("Content-Type", "application/json")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Println("Error sending log to server:", err)
+			return
+		}
+
+		defer resp.Body.Close()
+		io.Copy(os.Stdout, resp.Body)
+	}()
+}
+
+*/

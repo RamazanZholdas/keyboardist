@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSearch, logout } from '../api';
-import axios from 'axios';
+import { useUser, logout } from '../api';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,6 +11,10 @@ function Navbar() {
 
   const navigate = useNavigate();
 
+  const { data, isLoading, error } = useUser();
+
+
+
   function handleSearch(event: any) {
     event.preventDefault();
     setSearchQuery(event.target.elements.productName.value);
@@ -19,7 +22,7 @@ function Navbar() {
     navigate(`/shop/${searchQuery}`);
     setIsOpen(false);
   }
-  const user = 'max';
+
   const myRef = useRef<any>(null);
 
   useEffect(() => {
@@ -35,6 +38,10 @@ function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [myRef]);
+
+  if(isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="h-full">
@@ -100,8 +107,8 @@ function Navbar() {
             )}
 
             <div className="icons flex">
-              {user ? (
-                <button onClick={() => setDropdown(!dropdown)}>
+              {data ? (
+                <div onClick={() => setDropdown(!dropdown)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -129,7 +136,7 @@ function Navbar() {
                       </li>
                     </ul>
                   ) : null}
-                </button>
+                </div>
               ) : (
                 <Link to="signup">
                   <div className="icon ml-2">
@@ -159,9 +166,6 @@ function Navbar() {
                     strokeWidth="1.5"
                     stroke="currentColor"
                     className="w-8 h-8">
-                    <text x="9" y="19" className="text-cyan-400 text-[10px] font-thin">
-                      {user}
-                    </text>
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

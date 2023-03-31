@@ -1,10 +1,12 @@
+import {Link} from "react-router-dom";
+
 function Arrival() {
 
     return (
         <div className="w-full max-w-[1240px] mx-auto px-4 xl:px-0 py-4">
             <div className="text-white">
                 <h1 className="font-extrabold text-2xl">New arrival</h1>
-                    <h2 className="font-bold flex mt-1">show all
+                    <Link to="shop" className="font-bold flex mt-1">show all
                         <span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
                          stroke="currentColor" className="w-4 h-6">
@@ -12,7 +14,7 @@ function Arrival() {
 </svg>
 
                 </span>
-                    </h2>
+                    </Link>
 
             </div>
 

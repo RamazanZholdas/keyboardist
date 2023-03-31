@@ -52,24 +52,19 @@ func ChangeQuantity(c *fiber.Ctx) error {
 		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{"message": "Product not found"})
 	}
 
-	var productFromCart models.Product
-	var bufferIndex int
 	for index, item := range user.Cart {
-		productFromCart = item["product"]
-
-		if productFromCart.Order == int32(number) {
-			for optionIndex, option := range productFromCart.Options {
-				if option["optionId"] == optionId {
-					bufferIndex = optionIndex
-				}
+		if item["product"].Order == int32(number) {
+			if item["product"].Options[0]["optionId"] != optionId {
+				continue
 			}
-			if productFromCart.Options[bufferIndex]["inStock"] < quantity {
+
+			if item["product"].Options[0]["inStock"] < quantity {
 				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 					"message": "The quantity must be less than or equal to the number of items in stock.",
 				})
 			}
 
-			oldQuantity, err := strconv.Atoi(productFromCart.Options[bufferIndex]["quantity"])
+			oldQuantity, err := strconv.Atoi(item["product"].Options[0]["quantity"])
 			if err != nil {
 				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Internal server error"})
 			}
@@ -79,9 +74,28 @@ func ChangeQuantity(c *fiber.Ctx) error {
 			}
 
 			resultQuantity := oldQuantity + newQuantity
-			productFromCart.Options[bufferIndex]["quantity"] = strconv.Itoa(resultQuantity)
 
-			user.Cart[index]["product"] = productFromCart
+			if resultQuantity == 0 {
+				cart := []map[string]models.Product{}
+				for _, item := range user.Cart {
+					if item["product"].Order == int32(number) {
+						cart = append(user.Cart[:index], user.Cart[index+1:]...)
+					}
+				}
+
+				err = app.GetMongoInstance().UpdateOne("users", bson.M{"email": claims.Issuer}, bson.M{"$set": bson.M{"cart": cart}})
+				if err != nil {
+					return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Internal server error"})
+				}
+
+				return c.Status(fiber.StatusOK).JSON(fiber.Map{
+					"message": "The product has been removed from the cart successfully.",
+				})
+			}
+
+			item["product"].Options[0]["quantity"] = strconv.Itoa(resultQuantity)
+
+			user.Cart[index]["product"] = item["product"]
 
 			err = app.GetMongoInstance().UpdateOne("users", bson.M{"email": claims.Issuer}, bson.M{"$set": bson.M{"cart": user.Cart}})
 			if err != nil {

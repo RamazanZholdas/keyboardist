@@ -9,14 +9,15 @@ import { Cart } from './pages/Cart';
 import Typing from './pages/Typing';
 import Layout from './components/Layout';
 import { Wiki } from './pages/Wiki';
-import { useEffect, useState } from 'react';
 import { ProductPageDynamic } from './pages/ProductPageDynamic';
-import { Checkout } from './pages/Checkout';
 import { About } from './pages/About';
 import { Service } from './pages/Service';
-import { NewsPageDynamic } from './pages/NewsPageDynamic';
+import { News } from './pages/News';
 import ProtectedRoutes from './ProtectedRoutes';
-import { isAuthenticated } from './auth';
+import {Checkout} from "./pages/Checkout";
+import {WikiDynamic} from "./pages/WikiDynamic";
+import {NewsDynamic} from "./pages/NewsDynamic";
+import {Profile} from "./pages/Profile";
 
 function App() {
   return (
@@ -36,14 +37,17 @@ function App() {
               {/*<Route path="cart" element={<Cart />}  />*/}
               <Route path="typing" element={<Typing />} />
               <Route path="wiki" element={<Wiki />} />
+              <Route path="wiki/:id" element={<WikiDynamic />} />
               <Route path="service" element={<Service />} />
-              <Route path="news" element={<NewsPageDynamic />} />
+              <Route path="news" element={<News />} />
+              <Route path="news/:id" element={<NewsDynamic />} />
               <Route element={<ProtectedRoutes />}>
                 <Route path="cart" element={<Cart />} key={document.location.href} />
+                <Route path="profile" element={<Profile />} key={document.location.href} />
               </Route>
             </Route>
 
-            {/*<Route path="checkout" element={<Checkout/>} />*/}
+            <Route path="checkout" element={<Checkout/>} />
             <Route path="*" element={<Notfound />} />
             <Route path="signup" element={<Signup />} />
             <Route path="signin" element={<Signin />} />

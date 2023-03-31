@@ -2,6 +2,7 @@ package cart
 
 import (
 	"encoding/json"
+	"fmt"
 	"strconv"
 
 	"github.com/RamazanZholdas/KeyboardistSV2/internal/app"
@@ -44,36 +45,45 @@ func InsertToCart(c *fiber.Ctx) error {
 		})
 	}
 
+	var userOptionList []string
+
+	for _, cartItem := range user.Cart {
+		userOptionList = append(userOptionList, cartItem["product"].Options[0]["optionId"])
+	}
+
 	for _, cartItem := range user.Cart {
 		stringOrderCart := strconv.Itoa(int(cartItem["product"].Order))
-		if order == stringOrderCart {
-			for optionIndex, option := range cartItem["product"].Options {
-				if option["optionId"] == optionId {
-					quantity, err := strconv.Atoi(cartItem["product"].Options[optionIndex]["quantity"])
-					if err != nil {
-						return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
-					}
-
-					inStock, err := strconv.Atoi(cartItem["product"].Options[optionIndex]["inStock"])
-					if err != nil {
-						return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
-					}
-
-					if quantity == inStock {
-						return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Product is out of stock"})
-					}
-
-					quantity++
-					cartItem["product"].Options[optionIndex]["quantity"] = strconv.Itoa(quantity)
-
-					update := bson.M{"$set": bson.M{"cart": user.Cart}}
-					err = app.GetMongoInstance().UpdateOne("users", bson.M{"_id": user.ID}, update)
-					if err != nil {
-						return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
-					}
-					return c.JSON(fiber.Map{"message": "Product added to cart"})
-				}
+		if order == stringOrderCart && cartItem["product"].Options[0]["optionId"] == optionId {
+			fmt.Println("same product exists")
+			fmt.Println(cartItem["product"].Options[0]["optionId"])
+			fmt.Println(optionId)
+			fmt.Println("same product, same option")
+			quantity, err := strconv.Atoi(cartItem["product"].Options[0]["quantity"])
+			if err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
 			}
+
+			inStock, err := strconv.Atoi(cartItem["product"].Options[0]["inStock"])
+			if err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
+			}
+
+			if quantity == inStock {
+				return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"message": "Product is out of stock"})
+			}
+
+			quantity++
+			cartItem["product"].Options[0]["quantity"] = strconv.Itoa(quantity)
+
+			update := bson.M{"$set": bson.M{"cart": user.Cart}}
+			err = app.GetMongoInstance().UpdateOne("users", bson.M{"_id": user.ID}, update)
+			if err != nil {
+				return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"message": "Failed to update cart"})
+			}
+			return c.JSON(fiber.Map{"message": "Product added to cart"})
+
+		} else if order == stringOrderCart && cartItem["product"].Options[0]["optionId"] != optionId && !contains(userOptionList, optionId) {
+			fmt.Println("same product, different option")
 			var productWithDifferentOpt models.Product
 			err = app.GetMongoInstance().FindOne("products", bson.M{"order": number}, &productWithDifferentOpt)
 			if err != nil {
@@ -110,11 +120,10 @@ func InsertToCart(c *fiber.Ctx) error {
 	}
 
 	filteredOptions := make([]map[string]string, 0)
-	var index int
-	for optionIndex, option := range product.Options {
+
+	for _, option := range product.Options {
 		if option["optionId"] == optionId {
 			filteredOptions = append(filteredOptions, option)
-			index = optionIndex
 			break
 		}
 	}
@@ -122,7 +131,7 @@ func InsertToCart(c *fiber.Ctx) error {
 	product.Options = filteredOptions
 
 	// setting up quantity
-	product.Options[index]["quantity"] = "1"
+	product.Options[0]["quantity"] = "1"
 
 	user.Cart = append(user.Cart, map[string]models.Product{"product": product})
 
@@ -133,4 +142,14 @@ func InsertToCart(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{"message": "Product added to cart"})
+}
+
+func contains(s []string, str string) bool {
+	for _, v := range s {
+		if v == str {
+			return true
+		}
+	}
+
+	return false
 }

@@ -1,7 +1,26 @@
 import React from "react";
+import { useState } from "react";
+import {Link, useLocation} from "react-router-dom";
+import {payNow} from "../api";
 
-// const Checkout = (props: string) => {
+
 const Checkout = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const totalFromUrl = searchParams.get('total');
+
+
+    const handlePayment = async () => {
+        try {
+            setIsLoading(true);
+            const response = await payNow(totalFromUrl);
+            window.location.href = "/";
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     return (
         <div className="w-full max-w-[1240px] mx-auto px-4 xl:px-0 py-4 h-screen overflow-auto my-auto">
             <div
@@ -19,7 +38,7 @@ const Checkout = () => {
                 className="card  flex flex-col border border-cyan-300 p-4 text-xl text-white justify-center items-center gap-2">
                 <h1 className="font-extrabold text-3xl md:text-2xl">Keyboardist</h1>
 
-                <h2 className="font-bold text-2xl mb-2 md:mb-16">49.99$</h2>
+                <h2 className="font-bold text-2xl mb-2 md:mb-16">{totalFromUrl}$</h2>
 
                 <form className="flex flex-wrap gap-3 w-full p-5">
                     <label className="relative w-full flex flex-col">
@@ -92,7 +111,11 @@ const Checkout = () => {
                     </label>
 
                     <label className="relative w-full flex flex-col mt-6">
-                        <button className="bg-cyan-300 py-3 font-bold rounded-md">Pay now</button>
+                        <Link to="/" className="w-full">
+                        <button className="bg-cyan-300 py-3 font-bold rounded-md w-full" onClick={handlePayment}>
+                            {isLoading ? "Processing Payment..." : "Pay now"}
+                        </button>
+                        </Link>
                     </label>
                 </form>
             </div>

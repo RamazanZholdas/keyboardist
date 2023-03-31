@@ -75,7 +75,7 @@ const Shop = () => {
         </Link>
         {items &&
           items.map((product: Product) => (
-            <Link to={`/product/${product.order}`}>
+            <Link to={`/product/${product.order}`} key={product.order}>
               <div className="bg-gray-600/40 rounded-md p-5 text-white flex flex-col justify-center items-center">
                 <div className="mb-4">
                   <img src={product.images[0]} alt="arrival" className="h-64 object-contain" />

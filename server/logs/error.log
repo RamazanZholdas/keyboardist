@@ -52,3 +52,29 @@ New session started at: 2023-03-30T20:38:11+06:00
 New session started at: 2023-03-30T21:44:35+06:00
 
 New session started at: 2023-03-30T21:52:40+06:00
+
+New session started at: 2023-03-31T07:49:04+06:00
+ERROR: 2023/03/31 07:50:24 logging.go:52: Error finding one document in users using this filter map[email:aa@a.com], Error:  mongo: no documents in result
+ERROR: 2023/03/31 07:50:25 logging.go:52: Error finding one document in users using this filter map[email:aa@a.com], Error:  mongo: no documents in result
+ERROR: 2023/03/31 07:50:27 logging.go:52: Error finding one document in users using this filter map[email:aa@a.com], Error:  mongo: no documents in result
+ERROR: 2023/03/31 07:50:31 logging.go:52: Error finding one document in users using this filter map[email:aa@a.com], Error:  mongo: no documents in result
+
+New session started at: 2023-03-31T07:52:38+06:00
+
+New session started at: 2023-03-31T07:55:17+06:00
+
+New session started at: 2023-03-31T07:56:40+06:00
+
+New session started at: 2023-03-31T07:59:06+06:00
+
+New session started at: 2023-03-31T08:15:20+06:00
+
+New session started at: 2023-03-31T08:20:09+06:00
+
+New session started at: 2023-03-31T08:21:26+06:00
+
+New session started at: 2023-03-31T08:23:31+06:00
+
+New session started at: 2023-03-31T08:39:13+06:00
+
+New session started at: 2023-03-31T08:39:27+06:00
