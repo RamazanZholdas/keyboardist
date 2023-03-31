@@ -78,3 +78,25 @@ New session started at: 2023-03-31T08:23:31+06:00
 New session started at: 2023-03-31T08:39:13+06:00
 
 New session started at: 2023-03-31T08:39:27+06:00
+
+New session started at: 2023-03-31T08:51:42+06:00
+
+New session started at: 2023-03-31T09:02:01+06:00
+
+New session started at: 2023-03-31T09:28:32+06:00
+ERROR: 2023/03/31 09:28:41 logging.go:52: Error creating backup: exit status 127
+
+New session started at: 2023-03-31T09:28:52+06:00
+
+New session started at: 2023-03-31T09:58:09+06:00
+ERROR: 2023/03/31 09:59:10 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:11 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:12 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:16 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:17 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:46 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 09:59:47 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 10:00:21 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 10:11:26 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 10:11:34 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments
+ERROR: 2023/03/31 10:11:35 logging.go:52: Error parsing token:  token is malformed: token contains an invalid number of segments

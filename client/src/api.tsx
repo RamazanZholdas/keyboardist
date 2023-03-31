@@ -76,7 +76,7 @@ export async function getUser() {
 }
 
 export const useUser = () => {
-  return useQuery(['user'], getUser);
+  return useQuery(['user'], getUser, {retry: 1});
 };
 
 
@@ -162,4 +162,16 @@ export const fetchHistory = async () => {
 
 export const useHistory = () => {
   return useQuery(['history'], fetchHistory);
+};
+
+
+export const fetchSort = async (sort: string) => {
+  const response = await axios.get(`${BASE_URL}/sortItems/${sort}`, {
+    headers: { 'Content-type': 'application/json' },
+  });
+  return response.data;
+};
+
+export const useSort = (sort: string) => {
+  return useQuery(['shop', sort], () => fetchSort(sort));
 };

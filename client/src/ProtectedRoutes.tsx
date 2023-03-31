@@ -1,28 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import axios from 'axios';
+import {useUser} from "./api";
 
 const ProtectedRoutes = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, error } = useUser();
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:8000/user', { withCredentials: true })
-      .then((response) => {
-        setData(response.data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  return data !== null ? <Outlet /> : <Navigate to="signin" />;
+
+  return data !== undefined ? <Outlet /> : <Navigate to="signin" />;
 };
 
 export default ProtectedRoutes;

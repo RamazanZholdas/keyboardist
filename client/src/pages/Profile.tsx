@@ -25,9 +25,9 @@ const Profile = () => {
                     {data?.map((item: any) => (
                         <article key={item._id} className="card flex flex-col border border-2 rounded-2xl border-cyan-400 my-8 shadow-lg">
                             <div className="card-header flex w-full justify-between flex-wrap p-4">
-                                <p className="text-lg">Payment type: {item.payment_type}</p>
-                                <p className="text-lg">Purchase date: {item.purchase_date}</p>
-                                <p className="text-lg">Total price: {item.total_price}$</p>
+                                <p className="text-lg"><span className="font-extrabold">Payment type:</span>  {item.payment_type}</p>
+                                <p className="text-lg"><span className="font-extrabold">Purchase date:</span> {item.purchase_date}</p>
+                                <p className="text-lg"><span className="font-extrabold">Total price:</span> {item.total_price}$</p>
                             </div>
                             <div className="card-body flex flex-col w-full justify-between gap-8 p-4">
                                 {item.keyboard_ids.map((keyboard:any, index:number) => (
