@@ -58,3 +58,26 @@ type Wiki struct {
 	Content string             `bson:"content,omitempty" json:"content"`
 	Images  primitive.A        `bson:"images,omitempty" json:"images"`
 }
+
+type Thread struct {
+	ID          primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Title       string             `bson:"title,omitempty" json:"title"`
+	Order       int32              `bson:"order,omitempty" json:"order"`
+	Description string             `bson:"description,omitempty" json:"description"`
+	Author      User               `bson:"author,omitempty" json:"author"`
+	Posts       []Post             `bson:"posts,omitempty" json:"posts"`
+	Date        string             `bson:"date,omitempty" json:"date"`
+}
+
+type Post struct {
+	ID       primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Content  string             `bson:"content,omitempty" json:"content"`
+	Author   string             `bson:"author,omitempty" json:"author"`
+	Comments []Comment          `bson:"comments,omitempty" json:"comments"`
+}
+
+type Comment struct {
+	ID      primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Content string             `bson:"content,omitempty" json:"content"`
+	Author  string             `bson:"author,omitempty" json:"author"`
+}
